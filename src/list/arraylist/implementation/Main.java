@@ -10,13 +10,45 @@ public class Main {
 		numbers.addLast(30);
 		numbers.addLast(40);
 		
-		numbers.add(1, 15);
+//		for(int i=0; i<numbers.size(); i++) {
+//			System.out.println(numbers.get(i));
+//		}
 		
-		numbers.addFirst(5);
+		ArrayList.ListIterator li = numbers.listIterator();
+//		System.out.println(li.next());
+//		System.out.println(li.next());
+//		System.out.println(li.next());
+//		System.out.println(li.next());
+//		System.out.println(li.next());
+//		System.out.println(li.next());
 		
-		numbers.remove(1);
+//		while(li.hasNext()) {
+//			System.out.println(li.next());
+//		}
 		
-		System.out.println(numbers);
+//		System.out.println(li.next());
+//		System.out.println(li.next());
+//		System.out.println(li.next());
+//		System.out.println(li.next());
+//		System.out.println(li.previous());
+//		System.out.println(li.previous());
+//		System.out.println(li.previous());
+//		System.out.println(li.previous());
+		
+//		while(li.hasNext()) {
+//			System.out.println(li.next());
+//		}
+//		
+//		while(li.hasPrevious()) {
+//			System.out.println(li.previous());
+//		}
+		
+		while(li.hasNext()) {
+			int number = (int)li.next();
+			if(number == 30) {
+				li.add(35);
+			}
+			System.out.println(number);
+		}
 	}
-
 }

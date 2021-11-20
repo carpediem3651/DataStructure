@@ -52,4 +52,53 @@ public class ArrayList {
 	public Object removeLast() {
 		return remove(size-1);
 	}
+	
+	public Object get(int index) {
+		return elementData[index];
+	}
+	
+	public int size() {
+		return size;
+	}
+	
+	public int indexOf(Object o) {
+		for(int i=0; i<size; i++) {
+			if(o.equals(elementData[i])) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public ListIterator listIterator() {
+		return new ListIterator();
+	}
+	
+	class ListIterator {
+		private int nextIndex = 0;
+		
+		public boolean hasNext() {
+			return nextIndex < size();
+		}
+		
+		public Object next() {
+//			Object returnData = elementData[nextIndex];
+//			nextIndex++;
+//			return returnData;
+			
+			return elementData[nextIndex++];
+		}
+		
+		public Object previous() {
+			return elementData[--nextIndex];
+		}
+		
+		public boolean hasPrevious() {
+			return nextIndex > 0;
+		}
+		
+		public void add(Object element) {
+			ArrayList.this.add(nextIndex++, element);
+		}
+	}
 }
