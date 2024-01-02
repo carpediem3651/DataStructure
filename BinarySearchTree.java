@@ -42,4 +42,25 @@ public class BinarySearchTree {
         }
         return true;
     }
+
+    // 탐색
+    public Node search(int data) {
+        // CASE1: Node가 하나도 없을 때
+        if(this.head==null){
+            return null;
+        // CASE2: Node가 하나 이상 있을 때
+        } else {
+            Node findNode = this.head;
+            while(findNode != null) {
+                if(findNode.value == data) {
+                    return findNode;
+                } else if (data < findNode.value) {
+                    findNode = findNode.left;
+                } else {
+                    findNode = findNode.right;
+                }
+            }
+            return null;
+        }
+    }
 }
