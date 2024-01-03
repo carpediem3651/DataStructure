@@ -98,5 +98,15 @@ public class BinarySearchTree {
             }
         }
         
+        // Case1: 삭제할 Node가 Leaf Node인 경우
+        if(currNode.left == null && currNode.right == null) {
+            if(value < currParentNode.value) {
+                currParentNode.left = null;
+                currNode = null;
+            } else {
+                currParentNode.right = null;
+                currNode = null;
+            }
+        }
     }
 }
