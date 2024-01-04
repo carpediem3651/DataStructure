@@ -107,6 +107,27 @@ public class BinarySearchTree {
                 currParentNode.right = null;
                 currNode = null;
             }
+            return true;
+        // Case2-1: 삭제할 Node가 Child Node를 한 개 가지고 있을 경우(왼쪽 child)
+        } else if (currNode.left != null && currNode.right == null) {
+            if(value < currParentNode.value) {
+                currParentNode.left = currNode.left;
+                currNode = null;
+            } else {
+                currParentNode.right = currNode.left;
+                currNode = null;
+            }
+            return true;
+        // Case2-2: 삭제할 Node가 Child Node를 한 개 가지고 있을 경우(오른쪽 child)
+        } else if (currNode.left == null && currNode.right != null) {
+            if(value < currParentNode.value) {
+                currParentNode.left = currNode.right;
+                currNode = null;
+            } else {
+                currParentNode.right = currNode.right;
+                currNode = null;
+            }
+            return true;
         }
     }
 }
