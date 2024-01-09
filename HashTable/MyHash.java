@@ -1,3 +1,5 @@
+package HashTable;
+
 public class MyHash {
     public Slot[] hashTable;
 
@@ -36,5 +38,17 @@ public class MyHash {
         } else {
             return null;
         }
+    }
+
+    public static void main(String[] args) {
+        MyHash mainObject = new MyHash(20);
+        mainObject.saveData("DaveLee", "01011112222");
+        mainObject.saveData("fun-coding", "01022223333");
+        mainObject.saveData("David", "01033334444");
+        mainObject.saveData("Dave", "01044445555");
+
+        System.out.println(mainObject.getData("DaveLee"));
+        System.out.println(mainObject.getData("David"));
+        System.out.println(mainObject.getData("Dave"));
     }
 }
