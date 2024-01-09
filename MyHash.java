@@ -29,5 +29,12 @@ public class MyHash {
         return true;
     }
 
-    
+    public String getData(String key) {
+        Integer address = this.hashFunc(key);
+        if(this.hashTable[address]!=null) {
+            return this.hashTable[address].value;
+        } else {
+            return null;
+        }
+    }
 }
