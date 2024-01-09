@@ -2,7 +2,7 @@ public class MyHash {
     public Slot[] hashTable;
 
     public MyHash(Integer size) {
-        this.hashTable = new Slot[size]
+        this.hashTable = new Slot[size];
     }
 
     public class Slot {
