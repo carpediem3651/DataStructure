@@ -74,18 +74,57 @@ public class SingleLinkedList<T> {
         }
     }
 
+    public boolean delNode(T isData) {
+        // 첫번째 노드의 데이터가 없다.
+        if (this.head == null) {
+            return false;
+        } else {
+            // 삭제할 노드가 첫번째 노드(헤드)일 경우...
+            Node<T> node = this.head;
+            if (node.data == isData) {
+                this.head = this.head.next;
+                return true;
+            } else {
+                // 삭제할 노드가 첫번째 노드(헤드)가 아닐경우 순회한다.
+                while (node.next != null) {
+                    if (node.next.data == isData) {
+                        node.next = node.next.next;
+                        return true;
+                    }
+                    node = node.next;
+                }
+                // return을 false로 하면, 반환값이 없다. 즉 노드의 삭제를
+                return false;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         SingleLinkedList<Integer> MyLinkedList = new SingleLinkedList<Integer>();
         MyLinkedList.addNode(1);
         MyLinkedList.addNode(2);
         MyLinkedList.addNode(3);
+        MyLinkedList.addNode(4);
+        MyLinkedList.addNode(5);
 
+        // ------ 데이터 삽입 테스트
         // 1 노드 뒤에 5 노드 넣기
         // MyLinkedList.addNodeInside(5, 1);
         // 3 노드 뒤에 6 노드 넣기(끝 경계선 테스트)
         // MyLinkedList.addNodeInside(6, 3);
         // 20 노드 뒤에 7 노드 넣기
-        MyLinkedList.addNodeInside(7, 20);
+        // MyLinkedList.addNodeInside(7, 20)
+
+        // ------- 데이터 삭제 테스트
+        // 1. 중간노드 삭제
+        // MyLinkedList.delNode(3);
+        // 2. 맨 앞의 노드(헤드)삭제
+        // MyLinkedList.delNode(1);
+        // 3. 맨 마지막 노드 삭제
+        // MyLinkedList.delNode(5);
+        // 4. 없는 노드 삭제
+        MyLinkedList.delNode(7);
+        
         MyLinkedList.printAll();
     }
 
