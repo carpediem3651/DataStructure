@@ -8,7 +8,7 @@ public class BST {
         Node right;
         int value;
 
-        public Node (int data) {
+        public Node(int data) {
             this.value = data;
             this.right = null;
             this.left = null;
@@ -22,16 +22,16 @@ public class BST {
         } else {
             // CASE 2: Node가 하나 이상 들어가 있을 때
             Node findNode = this.head;
-            while(true) {
+            while (true) {
                 // CASE 2-1: 현재 Node의 왼쪽에 Node가 들어가야 할 때
                 if (data < findNode.value) {
-                    if(findNode.left != null) {
+                    if (findNode.left != null) {
                         findNode = findNode.left;
                     } else {
                         findNode.left = new Node(data);
                         break;
                     }
-                // CASE 2-2: 현재 Node의 오른쪽에 Node가 들어가야할 때 즉, data의 값이 Node의 오른쪽 값보다 클 때
+                    // CASE 2-2: 현재 Node의 오른쪽에 Node가 들어가야할 때 즉, data의 값이 Node의 오른쪽 값보다 클 때
                 } else {
                     if (findNode.right != null) {
                         findNode = findNode.right;
@@ -49,11 +49,11 @@ public class BST {
         // CASE1: Node가 하나도 없을 때
         if (this.head == null) {
             return null;
-        // CASE2: Node가 하나 이상 있을 때
+            // CASE2: Node가 하나 이상 있을 때
         } else {
             Node findNode = this.head;
             while (findNode != null) {
-                if( findNode.value == data) {
+                if (findNode.value == data) {
                     return findNode;
                 } else if (data < findNode.value) {
                     findNode = findNode.left;
@@ -105,5 +105,38 @@ public class BST {
             // currNode는 해당 데이터를 가지고 있는 Node
             // currParentNode는 해당 데이터를 가지고 있는 Node의 부모
         }
-    }
+        // Case1: 삭제할 Node가 Leaf Node인 경우
+        if (currNode.left == null && currNode.right == null) {
+            // 자식 노드를 삭제한 후에 연결 할 노드가 없으니 부모 노드는 null이 된다.
+            if(value <currParentNode.value) {
+                currParentNode.left = null;
+                currNode = null;
+            }else {
+                currParentNode.right = null;
+                currNode = null;
+            } 
+            return true; 
+        // Case2-1: 삭제할 Node가 Child Node를 한 개 가지고 있을 때 (왼쪽인 경우)
+        } else if (currNode.left != null && currNode.right == null) {
+            if(value < currParentNode.value) {
+                // 부모 노드는 삭제된 노드의 왼쪽 자식을 가리킨다.
+                currParentNode.left = currNode.left;
+                currNode = null;
+            } else {
+                currParentNode.right = currNode.left;
+                currNode = null;
+            }
+            return true;
+        // Case2-2: Case2-1: 삭제할 Node가 Child Node를 한 개 가지고 있을 때 (오른쪽인 경우)
+        } else if (currNode.left == null && currNode.right != null) {
+            if (value < currParentNode.value) {
+                currParentNode.left = currNode.right;
+                currNode = null;
+            } else {
+                currParentNode.right = currNode.right;
+                currNode = null;
+            }
+            return true;
+        }
+        
 }
