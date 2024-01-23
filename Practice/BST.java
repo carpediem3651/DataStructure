@@ -127,7 +127,7 @@ public class BST {
                 currNode = null;
             }
             return true;
-        // Case2-2: Case2-1: 삭제할 Node가 Child Node를 한 개 가지고 있을 때 (오른쪽인 경우)
+        // Case2-2: 삭제할 Node가 Child Node를 한 개 가지고 있을 때 (오른쪽인 경우)
         } else if (currNode.left == null && currNode.right != null) {
             if (value < currParentNode.value) {
                 currParentNode.left = currNode.right;
@@ -137,6 +137,38 @@ public class BST {
                 currNode = null;
             }
             return true;
+        // Case3-1: 삭제할 Node가 Child Node를 두개 가지고 있다.
+        } else {
+            // 삭제할 Node가 부모 Node의 왼쪽에 있을 때
+            if (value < currParentNode.value) {
+                
+                Node changeNode = currNode.right;
+                Node changeParentNode = currNode.right;
+                while (changeNode.left != null) {
+                    changeParentNode = changeNode;
+                    changeNode = changeNode.left;
+                }
+                // changeNode에는 삭제할 Node의 오른쪽 자식 Node중에서 가장 작은 값이 들어가있다.
+
+                if (changeNode.right != null) {
+                    // Case 3-1-2: chageNode의 오른쪽 Child Node가 있을 때
+                    changeParentNode.left = changeNode.right;
+                } else {
+                    // Case 3-1-1: changeNode의 Child Node가 없을 때
+                    changeParentNode.left = null;
+                }
+
+                // currParentNode의 왼쪽 Child Node에 삭제할 Node의 오른쪽 자식중 가장 작은 값을 가진 Node를 연결
+                currParentNode.left = changeNode;
+
+                // parentNode의 왼쪽 Child Node가 현재 ChangeNode이고, changeNode의 왼쪽 / 오른쪽 Child Node를 모두
+                // 삭제할 currNode의 기존 왼쪽/오른쪽 Node로 변경
+                changeNode.right = currNode.right;
+                changeNode.left = currNode.left;
+
+                currNode = null;
+            }
         }
         
+
 }
