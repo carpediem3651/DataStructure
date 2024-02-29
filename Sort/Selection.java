@@ -16,4 +16,15 @@ public class Selection {
         }
         return dataList;
     }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> testData = new ArrayList<Integer>();
+
+        for (int i = 0; i < 100; i++) {
+            testData.add((int)(Math.random() * 100));
+        }
+        Selection sSort = new Selection();
+        sSort.sort(testData);
+        System.out.println(sSort.sort(testData));
+    }
 }

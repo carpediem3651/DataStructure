@@ -1,4 +1,4 @@
-package Sort;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,5 +21,15 @@ public class Bubble {
         }
 
         return dataList;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> testData = new ArrayList<Integer>();
+        for (int i = 0; i < 100; i++) {
+            testData.add((int)(Math.random() * 100));
+        }
+        Bubble bSort = new Bubble();
+        bSort.sort(testData);
+        System.out.println(bSort.sort(testData));
     }
 }
